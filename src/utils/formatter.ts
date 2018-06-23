@@ -9,5 +9,5 @@ export const timeFormatter = (pattern?: string) => {
   return (date: number) => format(date, pattern || 'YYYY-MM-DD')
 }
 
-export const numberAmountToFormatedString = (amount: number | string) =>
+export const numberAmountToFormatedString = (amount?: number | string) =>
   amount ? numeral(amount).format('0,0') : ''

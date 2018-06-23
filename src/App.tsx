@@ -1,13 +1,18 @@
 import { find } from 'lodash'
 import * as React from 'react'
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  NavLink
+} from 'react-router-dom'
 
-import AccountBook from './AccountBook'
+import LivingCardPage from './LivingCardPage'
+import CreditCardPage from './CreditCardPage'
 
 import { initializeGoogleClient } from './utils/googleApi'
 import { GOOGLE_API_URL } from './constants/apiConfig'
 import './App.css'
-
-import logo from './logo.svg'
 
 interface IState {
   auth: boolean,
@@ -25,18 +30,26 @@ class App extends React.Component<{}, IState> {
   }
 
   public render() {
-    const { loadGapi, auth } = this.state
+    const { auth, loadGapi } = this.state
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        {loadGapi && auth && <AccountBook />}
-        <button onClick={this.handleAuth}>
-          {auth ? '로그아웃' : '로그인'}
-        </button>
-      </div>
+      <Router>
+        <div className="App">
+          <Redirect from="/" to="/living-account" />
+          <header className="App-header">
+            <NavLink to="/living-account">living account</NavLink>
+            <NavLink to="/credit-card">credit card</NavLink>
+            <button onClick={this.handleAuth}>
+              {auth ? '로그아웃' : '로그인'}
+            </button>
+          </header>
+            {loadGapi && (
+              <div className="App__contents">
+                <Route path="/living-account" component={LivingCardPage} />
+                <Route path="/credit-card" component={CreditCardPage} />
+              </div>
+            )}
+        </div>
+      </Router>
     )
   }
 

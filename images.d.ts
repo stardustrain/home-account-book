@@ -5,9 +5,7 @@ declare module '*.json' {
   const value: any;
   export default value;
 }
-declare module 'lodash'
-declare module 'uuid'
-declare module 'numeral'
+
 interface Window {
   gapi: any;
 }

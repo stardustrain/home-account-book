@@ -1,0 +1,6 @@
+declare module 'lodash'
+declare module 'uuid'
+declare module 'numeral'
+declare module 'chart.js'
+declare module 'react-router-dom'
+declare module 'react-paginate'

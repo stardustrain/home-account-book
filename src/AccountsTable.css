@@ -1,0 +1,43 @@
+.AccountsTable__pagination > li {
+  cursor: pointer;
+  display: inline-block;
+  padding: 1rem 0;
+}
+
+.AccountsTable__pagination > li > a {
+  padding: 1rem;
+}
+
+.AccountsTable__pagination > li > a:focus {
+  outline: 0;
+}
+
+.AccountsTable__next,
+.AccountsTable__prev {
+  border: 1px solid gray;
+  border-radius: 1rem;
+  margin: 0 .5rem;
+}
+
+.AccountsTable__next:active,
+.AccountsTable__prev:active {
+  background-color: lightblue;
+}
+
+.AccountsTable__page--active {
+  background-color: lightgray;
+  border: 1px solid gray;
+  border-radius: 1rem;
+}
+
+.AccountsTable__page--disabled {
+  cursor: not-allowed;
+}
+.AccountsTable__page--disabled:active {
+  background-color: transparent;
+}
+
+.AccountsTable__page--disabled > a {
+  cursor: not-allowed;
+  pointer-events: none;
+}

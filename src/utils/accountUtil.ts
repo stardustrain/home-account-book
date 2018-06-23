@@ -1,9 +1,15 @@
-import { getTime, parse } from 'date-fns'
-import { flow, filter, map, uniqBy } from 'lodash/fp'
+import { getTime, parse, getMonth } from 'date-fns'
+// import { keys } from 'lodash'
+import { flow, filter, map, uniqBy, reduce, groupBy, fromPairs, keys } from 'lodash/fp'
 import uuidv4 from 'uuid'
 
 import { accountColoumType } from '../constants/accountConstants'
 import { stringAmountToNumber, timeFormatter } from './formatter'
+
+interface IAccountsInfo {
+  expenseTotal?: number,
+  expenseTotalByMonth?: number
+}
 
 const {
   BALANCE,
@@ -39,3 +45,27 @@ export const getUniqueDateObject = (accounts: IAccount[]) => flow(
     value: x,
   }))
 )(accounts)
+
+const getTotalAmount = reduce((sum, n: IAccount) => {
+  if (n.expenseBalance && typeof n.expenseBalance === 'number' ) {
+    return sum + n.expenseBalance
+  }
+  return sum
+}, 0)
+
+const getExpenseTotalByMonth = (accounts: IAccount[]): any => {
+  const groupped = groupBy((account: IAccount) => getMonth(account.timeStamp) + 1)(accounts)
+  return flow(
+    keys,
+    map((x: string) => [parseInt(x, 10), getTotalAmount(groupped[x])]),
+    fromPairs
+  )(groupped)
+}
+
+export const getAccountsInfoProvider = (accounts: IAccount[]): IAccountsInfo => {
+
+  return accounts && {
+    expenseTotal: getTotalAmount(accounts),
+    expenseTotalByMonth: getExpenseTotalByMonth(accounts)
+  }
+}

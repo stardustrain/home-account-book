@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@types/lodash": "^4.14.109",
-    "@types/uuid": "^3.4.3",
+    "chart.js": "^2.7.2",
     "date-fns": "^1.29.0",
     "lodash": "^4.17.10",
     "numeral": "^2.0.6",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
+    "react-paginate": "^5.2.3",
+    "react-router-dom": "^4.3.1",
     "react-scripts-ts": "2.16.0",
     "rxjs": "^6.2.0",
     "rxjs-compat": "^6.2.0",
@@ -22,11 +23,16 @@
     "eject": "react-scripts-ts eject"
   },
   "devDependencies": {
+    "@types/chart.js": "^2.7.23",
     "@types/jest": "^23.0.0",
+    "@types/lodash": "^4.14.109",
     "@types/node": "10.1.4",
     "@types/react": "^16.3.16",
     "@types/react-dom": "^16.0.6",
+    "@types/react-paginate": "^4.3.2",
+    "@types/react-router-dom": "^4.2.7",
     "@types/rx": "^4.1.1",
+    "@types/uuid": "^3.4.3",
     "typescript": "^2.9.1"
   }
 }
